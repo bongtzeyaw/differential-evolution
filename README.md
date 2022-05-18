@@ -1,2 +1,8 @@
-# differential-evolution
+# Overview
 A project of Python Programming using Pytorch to implement differential evolution. The problem is a conflict resolution problem in aviation, that is, given two flights whose trajectories will meet, what is the most optimised manoeuvre to avoid the conflict? 
+
+# Modelisation
+We simply the probem by supposing the two aircrafts are of the same speed (air speed with the supposition that wind velocity is null). Thus, they can be represented by two points on the circumference of a circle where the center of the circle is the point of conflict. We also simplify the possible manoeuvres. In a solution manoeuvre, one aircraft continues its trajectory (or in a more aeronautically correct term, track) without modification while the other aircraft changes its trajectory. The change in trajectory is characterised by the instant to turn the aircraft, angle of turning and duration of deviation before turning back to resume its trajectory. Hence, this deviation can be visualised with an isosceles triangle on the inital trajectory straight line.
+
+# Differential evolution
+A member of the population is a solution triplet (instant to turn the aircraft, angle of turning, duration of deviation). The evaluation of a solution (or the fitness of a member of population) is the weighted sum of these three quantities, as a more opmitimised solution would mean a more effortless deviation. To iterate the next population, a temporary population is created by performing member-wise elementary operation with three randomly selected non-identical members of the previous population. Then, we merge (or reproduce) the temporary solution with the previous solution by comparing and selecting solutions with higher evaluation (or members with better fitness). Repeat this procedure until one of the stop criteria is met.
